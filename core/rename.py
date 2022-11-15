@@ -1,7 +1,5 @@
 import os, sys
 
-from asgard_sdk.models.local import LocalPath
-
 from dotenv import dotenv_values
 from json import loads
 from re import compile
@@ -100,11 +98,13 @@ class Rename:
 
     def rename_episodes(self, seasons: list):
         renamed = []
+        file_count = 0
         
         for path in seasons:
             for root, directories, files in os.walk(path):
                 for name in files:
                     full_path = os.path.join(root, name)
+                    file_count += 1
 
                     match = self.match_str(name, self.episode_regex)
                     if match is not None:
@@ -118,10 +118,10 @@ class Rename:
 
                         renamed.append(new_file_name)
 
-        return renamed
+        return renamed, file_count
 
     def walk(self, path: str):        
         seasons = self.fetch_seasons(path)
-        renamed = self.rename_episodes(seasons)
+        renamed, file_count = self.rename_episodes(seasons)
 
-        return seasons, renamed
+        return seasons, renamed, file_count

@@ -59,6 +59,7 @@ if __name__ == "__main__":
         print("[info] Compiling {l} regular expressions".format(l=len(rename.episode_regex) + len(rename.season_regex)))
         rename.compile_regex()
         print("[info] Walk: ", args.path)
-        seasons, renamed = rename.walk(args.path)
+        seasons, renamed, file_count = rename.walk(args.path)
+        print("Total Files: ", file_count)
         print("Renamed: {ec} episodes in {sc} seasons".format(sc=len(seasons), ec=len(renamed)))
 
