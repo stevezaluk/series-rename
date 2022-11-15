@@ -1,0 +1,5 @@
+{ 
+    "season_regex":["season(\\d)","Season (\\d+)"],
+    "episode_regex":["S([0-9]\\S)E\\s\\(([0-9]\\S)\\)"]
+}
+
